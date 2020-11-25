@@ -1,16 +1,36 @@
-#!/usr/bin/pyrhon3
+!/usr/bin/pyrhon3
 #grab email
 import requests
 import re
+print ("What do you want?"+"\n"+"If you want all of emali please enter --> 1"+"\n"+"If you want .org of emali please enter --> 2"+"\n"+"If you want .com o>
+check_function_user=input()
 url = "https://www.freebsd.org/community/mailinglists.html"
-pattern="\w+@\w+[.]\w+"
-r = requests.get(url)
-if r.status-code in [200,201,202]:   #check connection is connect or not
+#pattern1 find all of email and write in email.txt
+pattern1="\w+@\w+[.]\w+"
+#pattern2 find email .org and write in emaliorg.txt
+pattern2="\w+@\w+[.]org"
+#pattern3 find email .org and write in emalicom.txt
+pattern3="\w+@\w+[.]com"
+r = reuests.get(url)
+if r.status-code in [200,201,202] and check_function_user=="1":
     content=r.text
-    lst=re.findall(pattern,content)
+    lst=re.findall(pattern1,content)
     with open("email.txt" , mode="w") as f:
         f.write(lst)
     with open ("email.txt",mode="r") as fo:
         print(fo.read())
-
+elif r.status-code in [200,201,202] and check_function_user=="2":
+    content=r.text
+    lst=re.findall(pattern2,content)
+    with open("emailorg.txt" , mode="w") as f:
+        f.write(lst)
+    with open ("emailorg.txt",mode="r") as f2:
+        print(f2.read())
+elif r.status-code in [200,201,202] and check_function_user=="3":
+    content=r.text
+    lst=re.findall(pattern3,content)
+    with open("emailcom.txt" , mode="w") as f:
+        f.write(lst)
+    with open ("emailcom.txt",mode="r") as f3:
+        print(f3.read())
 
